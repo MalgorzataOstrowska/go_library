@@ -3,6 +3,7 @@ package main
 import (
 	"library/books"
 	"library/common/db"
+	"library/rentals"
 	"library/users"
 
 	"github.com/gin-gonic/gin"
@@ -21,6 +22,7 @@ func main() {
 
 	books.RegisterRoutes(router, dbHandler)
 	users.RegisterRoutes(router, dbHandler)
+	rentals.RegisterRoutes(router, dbHandler)
 
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
