@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) GetRentals(ctx *gin.Context) {
+func (h handler) getRentals(ctx *gin.Context) {
 	var rentals []models.Rental
 
 	if result := h.DB.Preload("User").Preload("Book").Find(&rentals); result.Error != nil {

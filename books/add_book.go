@@ -9,16 +9,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type AddBookRequestBody struct {
-	Title         string    `json:"title"`
-	Author        string    `json:"author"`
-	Description   string    `json:"description"`
-	Publication   time.Time `json:"publication"`
-	NumberOfPages int       `json:"number_of_pages"`
+type addBookRequestBody struct {
+	title         string
+	author        string
+	description   string
+	publication   time.Time
+	numberOfPages int
 }
 
-func (h handler) AddBook(ctx *gin.Context) {
-	body := AddBookRequestBody{}
+func (h handler) addBook(ctx *gin.Context) {
+	body := addBookRequestBody{}
 
 	if err := ctx.BindJSON(&body); err != nil {
 		ctx.AbortWithError(http.StatusBadRequest, err)
@@ -27,11 +27,11 @@ func (h handler) AddBook(ctx *gin.Context) {
 
 	var book models.Book
 
-	book.Title = body.Title
-	book.Author = body.Author
-	book.Description = body.Description
-	book.Publication = body.Publication
-	book.NumberOfPages = body.NumberOfPages
+	book.Title = body.title
+	book.Author = body.author
+	book.Description = body.description
+	book.Publication = body.publication
+	book.NumberOfPages = body.numberOfPages
 
 	if result := h.DB.Create(&book); result.Error != nil {
 		ctx.AbortWithError(http.StatusNotFound, result.Error)

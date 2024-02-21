@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) GetUsers(ctx *gin.Context) {
+func (h handler) getUsers(ctx *gin.Context) {
 	var users []models.User
 
 	first_name := ctx.Query("first_name")

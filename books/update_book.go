@@ -9,17 +9,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type UpdateBookRequestBody struct {
-	Title         string    `json:"title"`
-	Author        string    `json:"author"`
-	Description   string    `json:"description"`
-	Publication   time.Time `json:"publication"`
-	NumberOfPages int       `json:"number_of_pages"`
+type updateBookRequestBody struct {
+	title         string
+	author        string
+	description   string
+	publication   time.Time
+	numberOfPages int
 }
 
-func (h handler) UpdateBook(ctx *gin.Context) {
+func (h handler) updateBook(ctx *gin.Context) {
 	id := ctx.Param("id")
-	body := UpdateBookRequestBody{}
+	body := updateBookRequestBody{}
 
 	if err := ctx.BindJSON(&body); err != nil {
 		ctx.AbortWithError(http.StatusBadRequest, err)
@@ -33,11 +33,11 @@ func (h handler) UpdateBook(ctx *gin.Context) {
 		return
 	}
 
-	book.Title = body.Title
-	book.Author = body.Author
-	book.Description = body.Description
-	book.Publication = body.Publication
-	book.NumberOfPages = body.NumberOfPages
+	book.Title = body.title
+	book.Author = body.author
+	book.Description = body.description
+	book.Publication = body.publication
+	book.NumberOfPages = body.numberOfPages
 
 	h.DB.Save(&book)
 

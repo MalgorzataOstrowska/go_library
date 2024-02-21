@@ -8,13 +8,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type AddUserRequestBody struct {
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
+type addUserRequestBody struct {
+	firstName string
+	lastName  string
 }
 
-func (h handler) AddUser(ctx *gin.Context) {
-	body := AddUserRequestBody{}
+func (h handler) addUser(ctx *gin.Context) {
+	body := addUserRequestBody{}
 
 	if err := ctx.BindJSON(&body); err != nil {
 		ctx.AbortWithError(http.StatusBadRequest, err)
@@ -23,8 +23,8 @@ func (h handler) AddUser(ctx *gin.Context) {
 
 	var user models.User
 
-	user.FirstName = body.FirstName
-	user.LastName = body.LastName
+	user.FirstName = body.firstName
+	user.LastName = body.lastName
 
 	if result := h.DB.Create(&user); result.Error != nil {
 		ctx.AbortWithError(http.StatusNotFound, result.Error)

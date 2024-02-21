@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) GetUserRentals(ctx *gin.Context) {
+func (h handler) getUserRentals(ctx *gin.Context) {
 	id := ctx.Param("id")
 
 	var user models.User

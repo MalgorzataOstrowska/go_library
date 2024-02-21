@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) DeleteRental(ctx *gin.Context) {
+func (h handler) deleteRental(ctx *gin.Context) {
 	id := ctx.Param("id")
 
 	var rental models.Rental

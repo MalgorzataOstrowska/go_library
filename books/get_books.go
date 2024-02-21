@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) GetBooks(ctx *gin.Context) {
+func (h handler) getBooks(ctx *gin.Context) {
 	var books []models.Book
 
 	author := ctx.Query("author")

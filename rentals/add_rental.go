@@ -9,13 +9,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type AddRentalRequestBody struct {
-	UserId int `json:"user_id"`
-	BookId int `json:"book_id"`
+type addRentalRequestBody struct {
+	userId int
+	bookId int
 }
 
-func (h handler) AddRental(ctx *gin.Context) {
-	body := AddRentalRequestBody{}
+func (h handler) addRental(ctx *gin.Context) {
+	body := addRentalRequestBody{}
 
 	if err := ctx.BindJSON(&body); err != nil {
 		ctx.AbortWithError(http.StatusBadRequest, err)
@@ -24,8 +24,8 @@ func (h handler) AddRental(ctx *gin.Context) {
 
 	var rental models.Rental
 
-	rental.UserId = body.UserId
-	rental.BookId = body.BookId
+	rental.UserId = body.userId
+	rental.BookId = body.bookId
 	rental.RentalDate = time.Now()
 	rental.ReturnData = time.Now().AddDate(0, 0, 14)
 

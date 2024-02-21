@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) GetBook(ctx *gin.Context) {
+func (h handler) getBook(ctx *gin.Context) {
 	id := ctx.Param("id")
 
 	var book models.Book

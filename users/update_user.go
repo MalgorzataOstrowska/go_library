@@ -8,14 +8,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type UpdateUserRequestBody struct {
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
+type updateUserRequestBody struct {
+	firstName string
+	lastName  string
 }
 
-func (h handler) UpdateUser(ctx *gin.Context) {
+func (h handler) updateUser(ctx *gin.Context) {
 	id := ctx.Param("id")
-	body := UpdateUserRequestBody{}
+	body := updateUserRequestBody{}
 
 	if err := ctx.BindJSON(&body); err != nil {
 		ctx.AbortWithError(http.StatusBadRequest, err)
@@ -29,8 +29,8 @@ func (h handler) UpdateUser(ctx *gin.Context) {
 		return
 	}
 
-	user.FirstName = body.FirstName
-	user.LastName = body.LastName
+	user.FirstName = body.firstName
+	user.LastName = body.lastName
 
 	h.DB.Save(&user)
 

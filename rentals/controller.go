@@ -15,9 +15,9 @@ func RegisterRoutes(router *gin.Engine, db *gorm.DB) {
 	}
 
 	routes := router.Group("/rentals")
-	routes.POST("/", h.AddRental)
-	routes.GET("/", h.GetRentals)
-	routes.GET("/:id", h.GetRental)
-	routes.PUT("/:id", h.UpdateRental)
-	routes.DELETE("/:id", h.DeleteRental)
+	routes.POST("/", h.addRental)
+	routes.GET("/", h.getRentals)
+	routes.GET("/:id", h.getRental)
+	routes.PUT("/:id", h.updateRental)
+	routes.DELETE("/:id", h.deleteRental)
 }
